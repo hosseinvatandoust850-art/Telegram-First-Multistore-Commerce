@@ -1,0 +1,21 @@
+# -----------------------------------------------------------------------------
+# Railway deployment configuration for Telegram-First Multistore Commerce
+# -----------------------------------------------------------------------------
+# Railway reads this file when you deploy the repository with a GitHub-based
+# deployment. Combined with the Dockerfile this gives a "one-click"-style
+# experience: build the Docker image, run forward-only migrations, then start.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Run migrations (idempotent, forward-only) then start the web service.
+startCommand = "sh -c \"node dist/scripts/migrate.js && node dist/src/index.js\""
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+
+# The main web service. To scale background polling/backups off the request path,
+# create a second service from this same repo and set ENABLE_INLINE_WORKER=false
+# on the web service, and run `node dist/src/worker.js` in the second service.
