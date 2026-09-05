@@ -1,44 +1,93 @@
+```
 # Dependencies
 node_modules/
-.pnp/
-.pnp.js
 
-# Build output
-dist/
-build/
-out/
-.next/
-
-# Environment files — never commit real secrets
+# Environment
 .env
+.env.local
 .env.*
-!.env.example
 
-# Prisma
-prisma/*.db
-
-# Testing / coverage
-coverage/
-.nyc_output/
-
-# Logs
-logs/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
+*.pot
+*.po
+*~
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+
+# Node.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+node_modules/
+dist/
+build/
+.nyc_output
+coverage/
+*.lcov
+.next/
+out/
+public/dist/
+!.gitkeep
+logs/
+*.log
+npm-shrinkwrap.json
+*.tgz
+.yarn-integrity
+.lock-wscript
+.bower-cache
+.bower-registry
+.bower-tmp
+.npm
+.npmrc
+.node_repl_history
+.cachebuster
+.sass-cache
+.grunt
+.nuxt
+.cypress/
 
-# Uploads & local storage carried by a Railway volume
-storage/
-uploads/
-*.sqlite3
+# Build outputs
+target/
+build/
+dist/
+out/
+public/
 
-# Editor / OS
+# IDE
 .vscode/
 .idea/
-.DS_Store
 *.swp
+*.swo
+*.tmp
 
-# Temporary
-tmp/
-temp/
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+```
