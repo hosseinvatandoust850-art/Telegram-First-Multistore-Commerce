@@ -7,6 +7,7 @@ import { storefrontRoutes } from './routes/storefrontRoutes.js';
 import { authRoutes } from './routes/authRoutes.js';
 import { telegramRoutes } from './routes/telegramRoutes.js';
 import { adminRoutes } from './routes/adminRoutes.js';
+import { setupRoutes } from './routes/setupRoutes.js';
 import { readLocalFile } from './services/storage.js';
 import { registerMasterWebhook } from './services/botService.js';
 
@@ -31,6 +32,7 @@ export function buildApp(): Hono {
 
   app.route('/', healthRoutes);
   app.route('/api', authRoutes);
+  app.route('/api', setupRoutes);
   app.route('/', storefrontRoutes);
   app.route('/api', telegramRoutes);
   app.route('/api', adminRoutes);
@@ -59,8 +61,8 @@ export function buildApp(): Hono {
   app.onError((err, c) => {
     if (err instanceof AppError) {
       return c.json(
-        { ok: false, error: err.message, code: err.code },
-        err.status as never,
+        { ok: false, error: err.message, code: (err as any).code },
+        (err as any).status as never,
       );
     }
     logger.error({ err }, 'unhandled error');
