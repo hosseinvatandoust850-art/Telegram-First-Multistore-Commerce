@@ -126,7 +126,7 @@ setupRoutes.post('/setup/telegram', async (c) => {
             webhookRegistered = true;
             webhookUrl = result.url;
         }
-        catch (err) {
+        catch {
             // Webhook registration may fail if URL is not HTTPS yet - that's okay
             webhookRegistered = false;
         }
