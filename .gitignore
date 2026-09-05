@@ -1,1 +1,55 @@
-(docs/ADMIN-GUIDE.md, docs/DEVELOPMENT.md, docs/RAILWAY.md, docs/SECURITY.md, docs/SETUP.md, docs/TROUBLESHOOTING.md, README.md)
+```
+# Build artifacts
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+
+# Editors
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Compiled files
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Temp files
+*.tmp
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Cache directories
+.mypy_cache/
+.pytest_cache/
+.gradle/
+target/
+```

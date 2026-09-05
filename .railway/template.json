@@ -1,0 +1,54 @@
+{
+  "$schema": "https://railway.com/template.schema.json",
+  "name": "Telegram Multistore Commerce Platform",
+  "description": "A production-ready multistore commerce platform with Telegram bot integration, TON payments, and automated backups.",
+  "repository": "https://github.com/hosseinvatandoust850-art/Telegram-First-Multistore-Commerce",
+  "logo": "https://raw.githubusercontent.com/hosseinvatandoust850-art/Telegram-First-Multistore-Commerce/main/docs/logo.png",
+  "tags": ["ecommerce", "telegram", "ton", "multistore", "postgresql"],
+  
+  "services": [
+    {
+      "name": "app",
+      "type": "web",
+      "build": {
+        "dockerfilePath": "Dockerfile"
+      },
+      "deploy": {
+        "startCommand": "node dist/scripts/migrate.js && node dist/src/index.js",
+        "healthcheckPath": "/health",
+        "healthcheckTimeout": 300,
+        "restartPolicyType": "ON_FAILURE"
+      },
+      "variables": {
+        "NODE_ENV": "production",
+        "PORT": "8080",
+        "ENABLE_INLINE_WORKER": "true",
+        "DATABASE_URL": "${{Postgres.DATABASE_URL}}",
+        "APP_SECRET": "{{generateSecret 32}}",
+        "APP_URL": "https://${{RAILWAY_PUBLIC_DOMAIN}}"
+      },
+      "domains": [],
+      "volumes": [
+        {
+          "name": "storage",
+          "mountPath": "/app/storage",
+          "size": 1024
+        }
+      ]
+    },
+    {
+      "name": "Postgres",
+      "type": "database",
+      "database": "postgresql",
+      "version": "16"
+    }
+  ],
+
+  "connections": [
+    {
+      "from": "app",
+      "to": "Postgres",
+      "variable": "DATABASE_URL"
+    }
+  ]
+}
